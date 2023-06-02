@@ -2,7 +2,7 @@
 
 This module mirrors the functionality of my terraform-aws-security-group module, creating the nacl first, and then creating and attaching the rules.  
 
-This module takess vpc and subnet names instead of ids. 
+This module takes vpc and subnet names instead of ids. 
 
 Usage: 
 ```
