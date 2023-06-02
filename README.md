@@ -1,6 +1,50 @@
-## module_name
+## terraform-aws-nacl
 
+This module mirrors the functionality of my terraform-aws-security-group module, creating the nacl first, and then creating and attaching the rules.  
 
+This module takess vpc and subnet names instead of ids. 
+
+Usage: 
+```
+module "nacl" {
+  source        = "https://github.com/petercort/terraform-aws-nacl"
+  name          = "Web-nacl"
+  vpc_name      = "my-workload-vpc"
+  egress_rules  = [{
+        rule_number = "200"
+        from_port = "443"
+        to_port = "443"
+        cidr_block = "0.0.0.0/0"
+        rule_action = "allow"
+        protocol = "tcp"
+      },{
+        rule_number = "201"
+        from_port = "80"
+        to_port = "80"
+        cidr_block = "0.0.0.0/0"
+        rule_action = "allow"
+        protocol = "tcp"
+      }
+  ]
+  ingress_rules = [{
+        rule_number = "202"
+        from_port = "443"
+        to_port = "443"
+        cidr_block = "0.0.0.0/0"
+        rule_action = "allow"
+        protocol = "tcp"
+      },{
+        rule_number = "203"
+        from_port = "80"
+        to_port = "80"
+        cidr_block = "0.0.0.0/0"
+        rule_action = "allow"
+        protocol = "tcp"
+      }]
+  subnet_names  = ["az1-pvt-subnet-1"]
+  tags          = { env = "dev"}
+}
+```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
