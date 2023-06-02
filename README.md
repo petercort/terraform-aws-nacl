@@ -7,9 +7,9 @@ This module takess vpc and subnet names instead of ids.
 Usage: 
 ```
 module "nacl" {
-  source        = "https://github.com/petercort/terraform-aws-nacl"
+  source        = "git::https://github.com/petercort/terraform-aws-nacl"
   name          = "Web-nacl"
-  vpc_name      = "my-workload-vpc"
+  vpc_name      = "dev-workload-vpc"
   egress_rules  = [{
         rule_number = "200"
         from_port = "443"
@@ -41,7 +41,7 @@ module "nacl" {
         rule_action = "allow"
         protocol = "tcp"
       }]
-  subnet_names  = ["az1-pvt-subnet-1"]
+  subnet_names  = ["dev-workload-vpc-1a-pvtsub-1"]
   tags          = { env = "dev"}
 }
 ```
