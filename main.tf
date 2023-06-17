@@ -1,5 +1,4 @@
 data "aws_vpcs" "nacl_vpc" {
-  depends_on = [module.vpc]
   filter {
     name   = "tag:Name"
     values = [var.vpc_name]
@@ -7,7 +6,6 @@ data "aws_vpcs" "nacl_vpc" {
 }
 
 data "aws_subnet" "nacl_subnet" {
-  depends_on = [module.vpc]
   for_each = toset(var.subnet_names)
   filter {
     name   = "tag:Name"
