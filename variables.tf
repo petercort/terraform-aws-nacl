@@ -21,21 +21,10 @@ variable "tags" {
   default     = {}
 }
 
-variable "ingress_rules" {
+variable "rules" {
   type = list(object({
     rule_number = string
-    from_port   = optional(string, null)
-    to_port     = optional(string, null)
-    protocol    = optional(string, "-1")
-    cidr_block  = optional(string, "0.0.0.0/0")
-    rule_action = optional(string, "allow")
-  }))
-  default = []
-}
-
-variable "egress_rules" {
-  type = list(object({
-    rule_number = string
+    rule_type   = string
     from_port   = optional(string, null)
     to_port     = optional(string, null)
     protocol    = optional(string, "-1")
