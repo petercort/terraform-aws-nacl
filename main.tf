@@ -20,7 +20,7 @@ resource "aws_network_acl" "main" {
 }
 
 resource "aws_network_acl_rule" "rule" {
-  for_each       = { for index, rule in var.ingress_rules : rule.rule_number => rule }
+  for_each       = { for index, rule in var.rules : rule.rule_number => rule }
   network_acl_id = aws_network_acl.main.id
   rule_number    = each.value.rule_number
   egress         = each.value.rule_type == "egress" ? true : false 
