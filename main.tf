@@ -1,21 +1,7 @@
-data "aws_vpcs" "nacl_vpc" {
-  filter {
-    name   = "tag:Name"
-    values = [var.vpc_name]
-  }
-}
-
-data "aws_subnet" "nacl_subnet" {
-  for_each = toset(var.subnet_names)
-  filter {
-    name   = "tag:Name"
-    values = [each.key]
-  }
-}
 
 resource "aws_network_acl" "main" {
-  vpc_id     = data.aws_vpcs.nacl_vpc.ids.0
-  subnet_ids = [for subnets in data.aws_subnet.nacl_subnet : subnets.id]
+  vpc_id     = var.vpc_id
+  subnet_ids = var.subnet_ids
   tags       = merge(tomap({ Name = var.name }), var.tags)
 }
 

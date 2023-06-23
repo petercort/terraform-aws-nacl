@@ -10,11 +10,12 @@ variable "vpc_name" {
   default     = null
 }
 
-variable "subnet_names" {
+variable "subnet_ids" {
   type        = list(string)
-  description = "List of subnets to attach nacl to."
+  description = "List of subnet ids to attach nacl to."
   default     = []
 }
+
 variable "tags" {
   type        = map(string)
   description = "Tags to apply to the nacl."
