@@ -4,7 +4,7 @@ variable "name" {
   default     = null
 }
 
-variable "vpc_name" {
+variable "vpc_id" {
   type        = string
   description = "Name of the VPC to attach to."
   default     = null
